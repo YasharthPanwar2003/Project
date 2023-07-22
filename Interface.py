@@ -26,7 +26,7 @@ def Interface():
     global root
     root = tk.Tk()
     
-    root.geometry("700x770")
+    root.geometry("590x590")
     root.resizable(0, 0)
     
     root.config(bg='#7D5A46')
